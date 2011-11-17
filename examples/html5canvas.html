@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>html5canvas</title>
+	<script type="application/javascript">
+		function draw() {
+			var canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				var ctx = canvas.getContext("2d");
+				
+				ctx.fillStyle = "rgb(200,0,0)";
+				ctx.fillRect (10, 10, 55, 50);
+				
+				ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+				ctx.fillRect (30, 30, 55, 50);
+			}
+		}
+	</script>
+</head>
+
+<body onload="draw();">
+	<div>
+		<header>
+			<h1>HTML 5 Canvas</h1>
+		</header>
+		<div>
+		   <canvas id="canvas" width="150" height="150"></canvas>
+		</div>
+		<footer>
+			For more information, visit <a href="https://developer.mozilla.org/en/Canvas_tutorial">MDN's Canvas Tutorial</a>.
+		</footer>
+	</div>
+</body>
