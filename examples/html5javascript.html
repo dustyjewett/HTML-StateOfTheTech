@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>html5canvas</title>
+	<script type="application/javascript">
+		/** 
+		 * 1.8.5 
+		 * August 2010, Firefox 4
+		 */
+		function demoFreeze(){
+			var obj = {prop:10};
+			Object.freeze(obj);
+			obj.prop = 20;
+			console.log(obj.prop);
+		}
+		/**
+		 * Proxies are 'pretend' objects
+		 */
+		function demoProxy(){
+			var incompleteHandler = {get:function(myProxy, name){
+					alert('Property ' + name + ' accessed.');
+					return 1;
+				}
+			};
+			var p = Proxy.create(incompleteHandler);
+			// alerts 'Property blabla accessed' and 1 is assigned to q
+			var q = p.blabla;
+			// throws an error since neither the set trap or the fundamental trap used in the set trap are implemented
+			p.azerty = "This will throw an error";
+		}
+		/**
+		 * Expression Closures
+		 * A few less wiggles in your scripts.
+		 * (also, implied returns)
+		 */
+		function demoExpressionClosures(){
+			var square = function(x) x * x;
+			alert(square(2));
+		}
+	</script>
+</head>
+
+<body>
+	<div>
+		<header>
+			<h1>Javascript, </h1>
+		</header>
+		<div>
+			<ol>
+				<li><a href="javascript:;" onclick="demoFreeze()">Object.freeze</li>
+				<li><a href="javascript:;" onclick="demoProxy()">Proxy</li>
+				<li><a href="javascript:;" onclick="demoExpressionClosures()">Expression Closures</li>
+			</ol>
+		</div>
+		<footer>
+			For more information, visit <a href="https://developer.mozilla.org/en/JavaScript">MDN's Javascript Overview</a>, 
+			<a href="http://davidflanagan.com/Talks/es5/slides.html">ECMAScript 5: The Definitive Slides</a><br />
+			
+			For ECMAScript 5 Compatability, visit <a href="http://kangax.github.com/es5-compat-table/">http://kangax.github.com/es5-compat-table/</a>
+		</footer>
+	</div>
+</body>
