@@ -37,6 +37,62 @@
 			var square = function(x) x * x;
 			alert(square(2));
 		}
+		/**
+		 * Function.bind()
+		 * Or: How I Learned to Stop Worrying and Love the Bind().
+		 * One less way to shoot yourself in the foot.
+		 */
+		function demoBind(){
+			var item = {
+				text:"I'm a Lumberjack",
+				getText:function(){
+					console.log(this.text);
+					return this.text;
+				}
+			}
+			item.getText();
+			var pt2link = document.getElementById("bindPt2");
+			pt2link.addEventListener('click', item.getText);
+		}
+		/**
+		 * AS3 style Getters and Setters 
+		 * (works in all but IE, which only supports __defineGetter__() )
+		 */
+		function demoGettersAndSetters(){
+			var serialnum = {
+			    // Start at zero
+			    $n: 0, 
+			    // Return a new value each time it is read
+			    get next() { return this.$n++; },
+			    // Set n, but only to a larger value
+			    set next(n) {
+			        if (n >= this.$n) this.$n = n;
+			        else throw "Can't decrease n";
+			    }
+			};
+			console.log("Serial Number: " + serialnum.next);
+			console.log("Serial Number: " + serialnum.next);
+		}
+		function demoPropertyAttributes(){
+			var serialnum = Object.create(Object.prototype, {
+			  $n: {
+			    value: 0,
+			    writable: true,
+			    enumerable:false,
+			    configurable:false
+			  },  
+			  next: {
+			    enumerable:true,
+			    configurable:true,
+			    get: function() { return this.$n++; },
+			    set: undefined
+			  }
+			});			
+			console.log("Serial Number: " + serialnum.next);
+			console.log("Serial Number: " + serialnum.next);
+		}
+		
+		
 	</script>
 </head>
 
@@ -47,9 +103,13 @@
 		</header>
 		<div>
 			<ol>
-				<li><a href="javascript:;" onclick="demoFreeze()">Object.freeze</li>
-				<li><a href="javascript:;" onclick="demoProxy()">Proxy</li>
-				<li><a href="javascript:;" onclick="demoExpressionClosures()">Expression Closures</li>
+				<li><a href="javascript:;" onclick="demoFreeze()">Object.freeze</a></li>
+				<li><a href="javascript:;" onclick="demoProxy()">Proxy</a></li>
+				<li><a href="javascript:;" onclick="demoExpressionClosures()">Expression Closures</a></li>
+				<li><a href="javascript:;" onclick="demoBind()">Function.bind()</a> 
+					<a href="javascript:;" id="bindPt2">Part 2</a></li>
+				<li><a href="javascript:;" onclick="demoGettersAndSetters()">Getters And Setters</a></li>
+				
 			</ol>
 		</div>
 		<footer>
